@@ -1,22 +1,14 @@
 <?php
 // YANIMMA E ISABELLA - EI32
 
-// Cria uma variável chamada $sessao e a inicializa como string vazia
 $sessao = "";
 
-// Verifica se o parâmetro "login" foi enviado pela URL (via método GET)
-// e se o valor dele é igual a "ok"
 if (isset($_GET['login']) && $_GET['login'] == 'ok') {
-    // Se a condição for verdadeira, define o valor da variável $sessao como "ok"
     $sessao = "ok";
 }
 
-// Verifica se a variável $sessao é diferente de "ok"
-// Isso indica que o usuário não está autenticado
 if ($sessao != "ok") {
-    // Redireciona o usuário para a página de login
     header("Location: login.php");
-    // Encerra a execução do script imediatamente
     exit;
 }
 ?>
@@ -150,11 +142,16 @@ p {
     background: linear-gradient(135deg, #ffcc00, #ffaa00);
     color: white;
     border: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 30px;
+    padding: 0.45rem 0.9rem;   /* tamanho menor */
+    font-size: 0.85rem;        /* texto menor e proporcional */
+    border-radius: 25px;       /* arredondamento menor combina mais com o novo tamanho */
     cursor: pointer;
     transition: 0.3s;
+    margin: 0.2rem;
+    width: 150px;              /* todos ficam do MESMO tamanho */
+    text-align: center;
 }
+
 .btn:hover {
     background: linear-gradient(135deg, #ffaa00, #ff9900);
     transform: scale(1.05);
@@ -170,6 +167,8 @@ footer {
     box-shadow: 0 -4px 8px rgba(0,0,0,0.05);
 }
 
+.product-actions { display:flex; justify-content:center; gap:8px; align-items:center; flex-wrap:wrap; }
+
 </style>
 </head>
 <body>
@@ -180,6 +179,8 @@ footer {
         <label for="menu-toggle" class="menu-icon">☰</label>
         <ul class="nav-links">
             <li><a href="logout.php">Sair</a></li>
+            <!-- link para ver carrinho mantendo login -->
+            <li><a href="carrinho.php?login=ok">Carrinho</a></li>
         </ul>
     </nav>
 </header>
@@ -201,60 +202,85 @@ footer {
     <div class="products-grid" id="listaProdutos">
 
         <div class="product-card">
-            <img src="img/roupa1.jpg" class="product-image">
+            <img src="img/roupa1.jpg" class="product-image" alt="">
             <h3>Vestido Abelhinha</h3>
             <p class="product-price">R$ 89,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <!-- botão Comprar original -->
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <!-- botão Adicionar ao carrinho (envia nome e preço por GET e mantém login) -->
+                <a href="carrinho.php?produto=Vestido%20Abelhinha&preco=89.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa2.jpg" class="product-image">
+            <img src="img/roupa2.jpg" class="product-image" alt="">
             <h3>Conjunto Floral</h3>
             <p class="product-price">R$ 119,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Conjunto%20Floral&preco=119.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa3.jpg" class="product-image">
+            <img src="img/roupa3.jpg" class="product-image" alt="">
             <h3>Camiseta Colmeia</h3>
             <p class="product-price">R$ 49,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Camiseta%20Colmeia&preco=49.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa4.jpg" class="product-image">
+            <img src="img/roupa4.jpg" class="product-image" alt="">
             <h3>Conjunto Infantil</h3>
             <p class="product-price">R$ 89,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Conjunto%20Infantil&preco=89.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa5.jpg" class="product-image">
+            <img src="img/roupa5.jpg" class="product-image" alt="">
             <h3>Vestido Infantil</h3>
             <p class="product-price">R$ 79,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Vestido%20Infantil&preco=79.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa6.jpg" class="product-image">
+            <img src="img/roupa6.jpg" class="product-image" alt="">
             <h3>Chapéu Infantil</h3>
             <p class="product-price">R$ 39,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Chapeu%20Infantil&preco=39.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa7.jpg" class="product-image">
+            <img src="img/roupa7.jpg" class="product-image" alt="">
             <h3>Jardineira Infantil</h3>
             <p class="product-price">R$ 59,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Jardineira%20Infantil&preco=59.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
         <div class="product-card">
-            <img src="img/roupa8.jpg" class="product-image">
+            <img src="img/roupa8.jpg" class="product-image" alt="">
             <h3>Pijama Infantil</h3>
             <p class="product-price">R$ 149,90</p>
-            <a href="pagamento.php"><button class="btn">Comprar</button></a>
-           
+            <div class="product-actions">
+                <a href="pagamento.php"><button class="btn">Comprar</button></a>
+                <a href="carrinho.php?produto=Pijama%20Infantil&preco=149.90&login=ok"><button class="btn">Adicionar ao Carrinho</button></a>
+            </div>
         </div>
 
     </div>
@@ -264,49 +290,22 @@ footer {
     <p>&copy; 2025 Loja Abelhinhas - Todos os direitos reservados a Loja Abelhinhas 🐝</p>
 </footer>
 <script>
-
-// Professor, usei esta função que é usada para filtrar os produtos exibidos na página
-// com base no texto digitado pelo usuário em um campo de pesquisa (input).
-// 🐝 Basicamente o que deixa a barra de pesquisa funcional, optei por usar javascript para deixar funcional.
-
 function filtrarProdutos() {
-
-    // Obtém o valor digitado no campo de pesquisa com id "searchInput"
-    // e converte tudo para letras minúsculas para padronizar a comparação.
     var input = document.getElementById("searchInput").value.toLowerCase();
-
-    // Seleciona todos os elementos com a classe "product-card",
-    // que representam os produtos exibidos na página.
     var produtos = document.querySelectorAll(".product-card");
-
-    // Cria uma variável booleana que servirá para verificar
-    // se algum produto foi encontrado com base na busca.
     var encontrou = false;
 
-    // Percorre cada elemento do NodeList "produtos" usando o método forEach.
     produtos.forEach(function(produto) {
-
-        // Dentro de cada "product-card", busca o conteúdo do elemento <h3>,
-        // que normalmente contém o nome do produto.
-        // O texto também é convertido para minúsculas para comparação.
         var nome = produto.querySelector("h3").textContent.toLowerCase();
 
-        // Verifica se o nome do produto inclui o texto digitado pelo usuário.
         if (nome.includes(input)) {
-            // Se o nome do produto contém o texto buscado,
-            // o produto é exibido (display: "block").
             produto.style.display = "block";
-
-            // Marca que pelo menos um produto foi encontrado.
             encontrou = true;
         } else {
-            // Caso contrário, o produto é ocultado da tela (display: "none").
             produto.style.display = "none";
         }
     });
 
-    // Após verificar todos os produtos, se nenhum foi encontrado (encontrou = false),
-    // é exibido um alerta informando que não há resultados correspondentes.
     if (!encontrou) {
         alert("Nenhum produto encontrado!");
     }
