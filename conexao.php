@@ -11,7 +11,7 @@ $usuario = "root";
 $senha = "";
 
 // Define o nome do banco de dados que será utilizado
-$banco = "Loja";
+$banco = "loja_abelhinhas";
 
 // Cria a conexão com o banco de dados usando a função mysqli_connect()
 // A função recebe: servidor, usuário, senha e nome do banco
@@ -24,4 +24,5 @@ if (!$con) {
     die("Erro na conexão: " . mysqli_connect_error());
 }
 ?>
+
 
